@@ -12,10 +12,17 @@ use windows::Win32::UI::WindowsAndMessaging::{
 };
 
 /// A window belongs to the game if its executable name contains this (case-insensitive),
-/// e.g. `WARDOGS.exe` or `WARDOGS-Win64-Shipping.exe`.
-const GAME_PROCESS_MATCH: &str = "wardogs";
-/// Fallback when the process can't be queried (e.g. anti-cheat protection): match the window title.
-const GAME_TITLE_MATCH: &str = "wardogs";
+/// e.g. `WARDOGS.exe` or `WARDOGS-Win64-Shipping.exe`. When the process can't be queried
+/// (e.g. anti-cheat protection), the window title is matched instead.
+/// Override with `KITWOLF_GAME=notepad` to test without the game.
+const GAME_MATCH: &str = "wardogs";
+
+fn game_match() -> &'static str {
+    static MATCH: std::sync::OnceLock<String> = std::sync::OnceLock::new();
+    MATCH.get_or_init(|| {
+        std::env::var("KITWOLF_GAME").map(|s| s.to_lowercase()).unwrap_or_else(|_| GAME_MATCH.into())
+    })
+}
 
 pub fn foreground_window() -> isize {
     unsafe { GetForegroundWindow().0 as isize }
@@ -28,8 +35,8 @@ pub fn foreground_game() -> Option<isize> {
         return None;
     }
     let is_game = match process_name(hwnd) {
-        Some(name) => name.to_lowercase().contains(GAME_PROCESS_MATCH),
-        None => window_title(hwnd).to_lowercase().contains(GAME_TITLE_MATCH),
+        Some(name) => name.to_lowercase().contains(game_match()),
+        None => window_title(hwnd).to_lowercase().contains(game_match()),
     };
     is_game.then_some(hwnd.0 as isize)
 }

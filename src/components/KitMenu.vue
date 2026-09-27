@@ -273,15 +273,18 @@ export default {
 			state,
 			commands,
 			name: '',
-			error: ''
+			error: '',
+			f8Pressed: false
 		}
 	},
 	mounted: function(){
 		window.addEventListener('keydown', this.onKeydown);
+		window.addEventListener('keyup', this.onKeyup);
 		this.focusName();
 	},
 	unmounted: function(){
 		window.removeEventListener('keydown', this.onKeydown);
+		window.removeEventListener('keyup', this.onKeyup);
 	},
 	watch: {
 		'state.pending': function(){
@@ -300,6 +303,14 @@ export default {
 			});
 		},
 		onKeydown: function(event){
+			// The global F8 hook can't see keys while the menu has focus, so F8 is handled here.
+			if(event.key == 'F8'){
+				event.preventDefault();
+				if(!event.repeat){
+					this.f8Pressed = true;
+				}
+				return;
+			}
 			if(event.key == 'Escape'){
 				commands.closeMenu();
 				return;
@@ -310,6 +321,15 @@ export default {
 				if(kit){
 					commands.replayKit(kit.id);
 				}
+			}
+		},
+		onKeyup: function(event){
+			// Close on release, and only for a press that started here: the release of the F8
+			// that opened the menu also lands here, and the key is fully up by the time the
+			// game gets focus back (no auto-repeat reopening it).
+			if(event.key == 'F8' && this.f8Pressed){
+				this.f8Pressed = false;
+				commands.closeMenu();
 			}
 		},
 		save: async function(){

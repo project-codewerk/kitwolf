@@ -46,6 +46,21 @@ static EVENTS: OnceLock<Sender<HookEvent>> = OnceLock::new();
 static HOTKEY_HELD: AtomicBool = AtomicBool::new(false);
 static HOTKEY_SWALLOWED: AtomicBool = AtomicBool::new(false);
 
+/// Forget the hotkey's held state. Low-level hooks receive no keyboard input while our own
+/// overlay has focus, so the key-up of a press that opened or closed the menu can be missed,
+/// which would make the next press look like auto-repeat and get ignored.
+pub fn reset_hotkey() {
+    HOTKEY_HELD.store(false, Ordering::SeqCst);
+    HOTKEY_SWALLOWED.store(false, Ordering::SeqCst);
+}
+
+/// `KITWOLF_DEBUG=1`: log hotkey/mode activity to stderr and accept injected (synthetic)
+/// F8 presses, so the flow can be tested with SendInput.
+pub fn debug() -> bool {
+    static DEBUG: OnceLock<bool> = OnceLock::new();
+    *DEBUG.get_or_init(|| std::env::var_os("KITWOLF_DEBUG").is_some())
+}
+
 /// Install the hooks on a dedicated thread (low-level hooks need a message loop).
 pub fn start(events: Sender<HookEvent>) {
     let _ = EVENTS.set(events);
@@ -69,19 +84,26 @@ fn send(event: HookEvent) {
 unsafe extern "system" fn keyboard_proc(code: i32, wparam: WPARAM, lparam: LPARAM) -> LRESULT {
     if code == HC_ACTION as i32 {
         let info = &*(lparam.0 as *const KBDLLHOOKSTRUCT);
-        if info.vkCode == HOTKEY as u32 && (info.flags & LLKHF_INJECTED).0 == 0 {
+        if info.vkCode == HOTKEY as u32 && ((info.flags & LLKHF_INJECTED).0 == 0 || debug()) {
             let message = wparam.0 as u32;
             if message == WM_KEYDOWN || message == WM_SYSKEYDOWN {
                 // Holding the key auto-repeats key-downs; only act on the first one.
-                if !HOTKEY_HELD.swap(true, Ordering::SeqCst) {
+                let repeat = HOTKEY_HELD.swap(true, Ordering::SeqCst);
+                if !repeat {
                     let capture = CAPTURE_HOTKEY.load(Ordering::SeqCst) || game::foreground_game().is_some();
                     HOTKEY_SWALLOWED.store(capture, Ordering::SeqCst);
                     if capture {
                         send(HookEvent::Hotkey);
                     }
                 }
+                crate::debug_log!(
+                    "hook: F8 down repeat={repeat} swallowed={} foreground={:#x}",
+                    HOTKEY_SWALLOWED.load(Ordering::SeqCst),
+                    game::foreground_window()
+                );
             } else {
                 HOTKEY_HELD.store(false, Ordering::SeqCst);
+                crate::debug_log!("hook: F8 up foreground={:#x}", game::foreground_window());
             }
             if HOTKEY_SWALLOWED.load(Ordering::SeqCst) {
                 return LRESULT(1);

@@ -3,6 +3,20 @@
     windows_subsystem = "windows"
 )]
 
+/// Log to stderr when KITWOLF_DEBUG is set (see input::debug).
+#[macro_export]
+macro_rules! debug_log {
+    ($($arg:tt)*) => {
+        if $crate::input::debug() {
+            let ms = std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .map(|d| d.as_millis() % 100_000)
+                .unwrap_or(0);
+            eprintln!("[{ms:>5}] {}", format!($($arg)*));
+        }
+    };
+}
+
 mod game;
 mod input;
 mod kits;
@@ -30,7 +44,7 @@ fn waits_before(click: &Click, kit_has_ctrl: bool) -> bool {
     click.ctrl || !kit_has_ctrl
 }
 
-#[derive(Clone, Copy, PartialEq, Serialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Serialize)]
 #[serde(rename_all = "lowercase")]
 enum Mode {
     /// Overlay is invisible and click-through.
@@ -113,11 +127,16 @@ fn set_click_through(hwnd: isize, click_through: bool) {
 /// Switch mode, route input and focus accordingly, and tell the UI.
 fn set_mode(app: &AppHandle, mode: Mode) {
     let state = kitwolf(app);
-    let game = {
+    let (previous, game) = {
         let mut session = state.session.lock().unwrap();
-        session.mode = mode;
-        session.game
+        let previous = std::mem::replace(&mut session.mode, mode);
+        (previous, session.game)
     };
+    // While the menu has focus the hook is blind (F8 is handled by the overlay UI instead),
+    // so its view of the key is stale on the way in and out.
+    if mode == Mode::Menu || previous == Mode::Menu {
+        input::reset_hotkey();
+    }
     input::CAPTURE_HOTKEY.store(mode != Mode::Idle, Ordering::SeqCst);
     input::RECORD_CLICKS.store(mode == Mode::Recording, Ordering::SeqCst);
 
@@ -131,6 +150,7 @@ fn set_mode(app: &AppHandle, mode: Mode) {
     } else if let Some(game) = game {
         game::bring_to_front(game);
     }
+    debug_log!("mode -> {mode:?}, foreground now {:#x}", game::foreground_window());
     emit_state(app);
 }
 
@@ -145,6 +165,7 @@ fn game_is_active(app: &AppHandle) -> bool {
 fn on_hotkey(app: &AppHandle) {
     let state = kitwolf(app);
     let mode = state.session.lock().unwrap().mode;
+    debug_log!("hotkey in mode {mode:?}");
     match mode {
         Mode::Idle => {
             if let Some(game) = game::foreground_game() {

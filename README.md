@@ -57,6 +57,17 @@ npm run tauri dev
 
 To preview the UI in a plain browser without Tauri, run `npm run dev` and open `http://localhost:3440/?mode=menu`. Other options are `?mode=naming`, `?mode=recording` and `?view=control`. These use mock data.
 
+### Debugging the hotkey
+
+Two environment variables help test the overlay without the game:
+
+- `KITWOLF_GAME=notepad` treats any window whose process name (or title) contains `notepad` as the game.
+- `KITWOLF_DEBUG=1` logs F8 and mode changes to stderr, and accepts synthetic (`SendInput`) F8 presses so the flow can be scripted.
+
+Low-level keyboard hooks receive no input while Kitwolf's own overlay has focus. So while the menu is open, F8 is handled by the overlay UI (`KitMenu.vue`) instead of the hook.
+
+A plain `cargo build` embeds the frontend from `dist/`. Run `npm run build` first, or use `npm run tauri dev`.
+
 ### Build the installer
 
 ```sh
