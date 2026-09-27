@@ -1,0 +1,62 @@
+/* WARDOGS fan design system (see /template): tokens + brand surfaces. */
+@import "./tokens/fonts.css";
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./tokens/geometry.css";
+@import "./tokens/elevation.css";
+@import "./tokens/motion.css";
+@import "./tokens/semantic.css";
+@import "./patterns.css";
+
+:root {
+  font-family: var(--wd-font-ui);
+  font-size: var(--wd-size-body);
+  line-height: var(--wd-leading-body);
+  color: var(--text-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Must stay transparent: the overlay window only shows what is drawn on top. */
+html, body {
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--wd-font-display);
+  font-weight: var(--wd-weight-bold);
+  letter-spacing: var(--wd-track-heading);
+  line-height: var(--wd-leading-heading);
+  text-transform: uppercase;
+  color: var(--text-display);
+}
+
+.wd-mono {
+  font-family: var(--wd-font-mono);
+  font-size: var(--wd-size-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.wd-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 1px 6px;
+  font-family: var(--wd-font-mono);
+  font-size: var(--wd-size-mono-sm);
+  font-weight: var(--wd-weight-semibold);
+  color: var(--wd-gold-500);
+  border: 1px solid var(--line-hair);
+  background: var(--wd-black-a40);
+}

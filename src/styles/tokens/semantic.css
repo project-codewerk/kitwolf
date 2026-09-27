@@ -1,0 +1,38 @@
+/* Semantic aliases — author UI against these, not the base palette. */
+:root{
+  --surface-void:var(--wd-black);
+  --surface-page:var(--wd-void);
+  --surface-panel:var(--wd-steel-900);
+  --surface-card:var(--wd-steel-800);
+  --surface-raised:var(--wd-steel-700);
+  --surface-input:var(--wd-steel-900);
+  --surface-hover:var(--wd-steel-700);
+  --surface-selected:var(--wd-gold-a08);
+  --surface-disabled:var(--wd-steel-800);
+
+  --text-display:var(--wd-bone-050);
+  --text-body:var(--wd-ash-200);
+  --text-muted:var(--wd-ash-300);
+  --text-faint:var(--wd-gunmetal-400);
+  --text-accent:var(--wd-gold-500);
+  --text-on-gold:var(--wd-black);
+  --text-disabled:var(--wd-steel-500);
+
+  --line-hair:var(--wd-steel-600);
+  --line-strong:var(--wd-steel-500);
+  --line-accent:var(--wd-gold-500);
+
+  --action-primary-bg:var(--wd-gold-fill);
+  --action-primary-fg:var(--wd-black);
+  --action-primary-hover:var(--wd-gold-300);
+  --action-primary-press:var(--wd-gold-600);
+  --action-secondary-bg:var(--wd-plate-fill);
+  --action-secondary-fg:var(--wd-bone-050);
+  --action-ghost-fg:var(--wd-bone-100);
+
+  --status-friendly:var(--wd-olive-500);
+  --status-hostile:var(--wd-alert-500);
+  --status-neutral:var(--wd-hud-500);
+  --status-objective:var(--wd-gold-500);
+  --status-cash:var(--wd-gold-400);
+}

@@ -1,0 +1,43 @@
+/* Base palette. Gold + off-white sampled from the official WARDOGS logo lockup;
+   steels sampled from the site's near-black digital-camo ground and in-engine capture. */
+:root{
+  --wd-black:#070809;
+  --wd-void:#0B0C0E;
+  --wd-steel-900:#14161A;
+  --wd-steel-800:#1B1E23;
+  --wd-steel-700:#23272E;
+  --wd-steel-600:#2E333B;
+  --wd-steel-500:#3D444E;
+  --wd-gunmetal-400:#5A626D;
+  --wd-ash-300:#8A9199;
+  --wd-ash-200:#B9BFC6;
+  --wd-bone-100:#E8E9E6;
+  --wd-bone-050:#F4F4F2;
+  --wd-white:#FFFFFF;
+
+  --wd-gold-300:#F7CE6B;
+  --wd-gold-400:#EFB63C;
+  --wd-gold-500:#E0A020;
+  --wd-gold-600:#B9821A;
+  --wd-gold-700:#8C6113;
+  --wd-brass-700:#756131;
+  --wd-brass-800:#5E4E27;
+  --wd-brass-900:#3A3019;
+
+  /* Extrapolated states — not sampled from official art (see readme.md) */
+  --wd-olive-500:#7A8B3A;
+  --wd-olive-600:#5E6C2A;
+  --wd-alert-500:#C3372C;
+  --wd-alert-600:#8F251C;
+  --wd-hud-500:#63B7C9;
+  --wd-hud-600:#3D7F8D;
+
+  /* Alphas used for hairlines, scrims and glows */
+  --wd-gold-a45:rgba(224,160,32,.45);
+  --wd-gold-a20:rgba(224,160,32,.20);
+  --wd-gold-a08:rgba(224,160,32,.08);
+  --wd-black-a70:rgba(7,8,9,.70);
+  --wd-black-a40:rgba(7,8,9,.40);
+  --wd-white-a12:rgba(255,255,255,.12);
+  --wd-white-a06:rgba(255,255,255,.06);
+}

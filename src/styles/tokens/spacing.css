@@ -1,0 +1,24 @@
+:root{
+  --wd-space-0:0px;
+  --wd-space-1:2px;
+  --wd-space-2:4px;
+  --wd-space-3:8px;
+  --wd-space-4:12px;
+  --wd-space-5:16px;
+  --wd-space-6:20px;
+  --wd-space-7:24px;
+  --wd-space-8:32px;
+  --wd-space-9:40px;
+  --wd-space-10:48px;
+  --wd-space-11:64px;
+  --wd-space-12:80px;
+  --wd-space-13:96px;
+  --wd-space-14:128px;
+
+  --wd-gutter:24px;
+  --wd-section-y:96px;
+  --wd-section-y-tight:56px;
+  --wd-max-content:1180px;
+  --wd-max-prose:66ch;
+  --wd-hud-inset:20px;
+}

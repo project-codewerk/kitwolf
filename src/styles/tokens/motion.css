@@ -1,0 +1,10 @@
+:root{
+  --wd-dur-instant:80ms; /* @kind other */
+  --wd-dur-fast:130ms; /* @kind other */
+  --wd-dur-base:200ms; /* @kind other */
+  --wd-dur-slow:340ms; /* @kind other */
+  --wd-ease-mech:cubic-bezier(.2,.8,.2,1); /* @kind other */
+  --wd-ease-snap:cubic-bezier(.16,1,.3,1); /* @kind other */
+  --wd-ease-in-out:cubic-bezier(.4,0,.2,1); /* @kind other */
+  --wd-transition-control:background-color var(--wd-dur-fast) var(--wd-ease-mech),border-color var(--wd-dur-fast) var(--wd-ease-mech),color var(--wd-dur-fast) var(--wd-ease-mech),box-shadow var(--wd-dur-fast) var(--wd-ease-mech),transform var(--wd-dur-instant) var(--wd-ease-mech);
+}

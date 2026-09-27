@@ -1,0 +1,19 @@
+/* Corners are cut, not rounded. Radii stay near zero; chamfers do the shaping. */
+:root{
+  --wd-radius-0:0px;
+  --wd-radius-1:2px;
+  --wd-radius-2:3px;
+
+  --wd-chamfer-sm:6px;
+  --wd-chamfer-md:10px;
+  --wd-chamfer-lg:16px;
+  --wd-chamfer-xl:26px;
+
+  --wd-border-hair:1px;
+  --wd-border-plate:2px;
+  --wd-border-heavy:3px;
+  --wd-rule:1px solid var(--wd-steel-600);
+  --wd-rule-gold:1px solid var(--wd-gold-a45);
+
+  --wd-stripe-size:10px;
+}

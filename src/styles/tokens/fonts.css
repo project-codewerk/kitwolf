@@ -1,0 +1,13 @@
+/* WARDOGS fan design system — webfonts.
+   SUBSTITUTION NOTICE: the official WARDOGS wordmark is a custom chamfered display
+   face that is not published as a webfont. Chakra Petch is the closest Google Fonts
+   match (clipped/chamfered terminals, technical military feel) and stands in for all
+   display type. Barlow Semi Condensed covers UI + body; IBM Plex Mono covers telemetry. */
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:600;font-display:swap;src:url("../../assets/fonts/chakra-petch-600.woff2") format("woff2")}
+@font-face{font-family:"Chakra Petch";font-style:normal;font-weight:700;font-display:swap;src:url("../../assets/fonts/chakra-petch-700.woff2") format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-style:normal;font-weight:400;font-display:swap;src:url("../../assets/fonts/barlow-semi-condensed-400.woff2") format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-style:normal;font-weight:500;font-display:swap;src:url("../../assets/fonts/barlow-semi-condensed-500.woff2") format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-style:normal;font-weight:600;font-display:swap;src:url("../../assets/fonts/barlow-semi-condensed-600.woff2") format("woff2")}
+@font-face{font-family:"Barlow Semi Condensed";font-style:normal;font-weight:700;font-display:swap;src:url("../../assets/fonts/barlow-semi-condensed-700.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../../assets/fonts/ibm-plex-mono-400.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;font-display:swap;src:url("../../assets/fonts/ibm-plex-mono-600.woff2") format("woff2")}

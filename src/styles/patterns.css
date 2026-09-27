@@ -1,0 +1,14 @@
+/* Reusable brand surfaces and shapes. Utility classes, no component styling. */
+.wd-camo{background-color:var(--wd-black);background-image:url("../assets/bg-camo.jpg");background-size:1000px auto;background-repeat:repeat}
+.wd-grain{position:relative}
+.wd-grain::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px)}
+.wd-hazard{background-image:repeating-linear-gradient(135deg,var(--wd-gold-500) 0 var(--wd-stripe-size),var(--wd-black) var(--wd-stripe-size) calc(var(--wd-stripe-size) * 2))}
+.wd-plate{background:var(--wd-steel-fill);border:var(--wd-border-hair) solid var(--wd-steel-600);box-shadow:var(--wd-shadow-plate)}
+.wd-scrim-bottom{background:var(--wd-scrim-bottom)}
+.wd-scrim-left{background:var(--wd-scrim-left)}
+.wd-chamfer-sm{clip-path:polygon(var(--wd-chamfer-sm) 0,100% 0,100% calc(100% - var(--wd-chamfer-sm)),calc(100% - var(--wd-chamfer-sm)) 100%,0 100%,0 var(--wd-chamfer-sm))}
+.wd-chamfer-md{clip-path:polygon(var(--wd-chamfer-md) 0,100% 0,100% calc(100% - var(--wd-chamfer-md)),calc(100% - var(--wd-chamfer-md)) 100%,0 100%,0 var(--wd-chamfer-md))}
+.wd-chamfer-lg{clip-path:polygon(var(--wd-chamfer-lg) 0,100% 0,100% calc(100% - var(--wd-chamfer-lg)),calc(100% - var(--wd-chamfer-lg)) 100%,0 100%,0 var(--wd-chamfer-lg))}
+.wd-notch-tr{clip-path:polygon(0 0,calc(100% - var(--wd-chamfer-md)) 0,100% var(--wd-chamfer-md),100% 100%,0 100%)}
+.wd-overline{font-family:var(--wd-font-display);font-weight:var(--wd-weight-bold);font-size:var(--wd-size-overline);letter-spacing:var(--wd-track-overline);text-transform:uppercase;color:var(--text-accent)}
+.wd-slashes::before{content:"// ";color:var(--wd-gold-500)}

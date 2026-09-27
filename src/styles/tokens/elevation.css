@@ -1,0 +1,16 @@
+/* Hard-edged elevation only: stacked plates, no soft ambient blur. */
+:root{
+  --wd-shadow-plate:0 2px 0 var(--wd-black-a70);
+  --wd-shadow-plate-lg:0 4px 0 var(--wd-black-a70);
+  --wd-shadow-inset-top:inset 0 1px 0 var(--wd-white-a12);
+  --wd-shadow-inset-frame:inset 0 0 0 1px var(--wd-white-a06);
+  --wd-shadow-drop-modal:0 24px 60px rgba(0,0,0,.72);
+  --wd-glow-gold:0 0 0 1px var(--wd-gold-500),0 0 22px var(--wd-gold-a20);
+  --wd-focus-ring:0 0 0 2px var(--wd-black),0 0 0 4px var(--wd-gold-500);
+
+  --wd-scrim-bottom:linear-gradient(to top,var(--wd-black) 0%,rgba(7,8,9,.78) 34%,rgba(7,8,9,0) 100%);
+  --wd-scrim-left:linear-gradient(to right,rgba(7,8,9,.92) 0%,rgba(7,8,9,.55) 45%,rgba(7,8,9,0) 100%); /* @kind other */
+  --wd-plate-fill:linear-gradient(180deg,var(--wd-brass-700) 0%,var(--wd-brass-800) 100%);
+  --wd-gold-fill:linear-gradient(180deg,var(--wd-gold-400) 0%,var(--wd-gold-500) 100%);
+  --wd-steel-fill:linear-gradient(180deg,var(--wd-steel-700) 0%,var(--wd-steel-800) 100%);
+}

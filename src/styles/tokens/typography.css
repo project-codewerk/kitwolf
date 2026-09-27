@@ -1,0 +1,38 @@
+:root{
+  --wd-font-display:"Chakra Petch","Arial Narrow",system-ui,sans-serif;
+  --wd-font-ui:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --wd-font-mono:"IBM Plex Mono",ui-monospace,monospace;
+
+  --wd-weight-regular:400;
+  --wd-weight-medium:500;
+  --wd-weight-semibold:600;
+  --wd-weight-bold:700;
+
+  /* Display ramp — always uppercase */
+  --wd-size-display-1:76px;
+  --wd-size-display-2:56px;
+  --wd-size-display-3:40px;
+  --wd-size-heading-1:30px;
+  --wd-size-heading-2:24px;
+  --wd-size-heading-3:19px;
+  /* Text ramp */
+  --wd-size-body-lg:19px;
+  --wd-size-body:16px;
+  --wd-size-body-sm:14px;
+  --wd-size-label:13px;
+  --wd-size-overline:11px;
+  --wd-size-mono:13px;
+  --wd-size-mono-sm:11px;
+
+  --wd-leading-display:0.94;
+  --wd-leading-heading:1.08;
+  --wd-leading-body:1.55;
+  --wd-leading-tight:1.3;
+
+  --wd-track-display:0.01em;
+  --wd-track-heading:0.02em;
+  --wd-track-body:0; /* @kind font */
+  --wd-track-label:0.12em;
+  --wd-track-overline:0.22em;
+  --wd-track-plate:0.34em;
+}
