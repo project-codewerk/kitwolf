@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "kitwolf",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "tauri": {
     "allowlist": {
@@ -39,7 +39,15 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "dialog": true,
+      "endpoints": [
+        "https://github.com/project-codewerk/kitwolf/releases/latest/download/latest.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDYzRTI1RTI2QTI3NDM4RTEKUldUaE9IU2lKbDdpWTJPNjI5Tm5MMlgyeFk2MG5rejlwelFkbWlROCt4MFRFdHJPbUVQTEtGeUUK",
+      "windows": {
+        "installMode": "passive"
+      }
     },
     "windows": [
       {

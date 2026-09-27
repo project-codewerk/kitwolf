@@ -1,6 +1,6 @@
 [package]
 name = "kitwolf"
-version = "0.1.0"
+version = "0.1.1"
 description = "WARDOGS overlay and macro utility"
 authors = ["Gabor Suranyi"]
 license = ""
@@ -15,7 +15,7 @@ tauri-build = { version = "1.5", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.6", features = [] }
+tauri = { version = "1.6", features = ["updater"] }
 
 [features]
 # by default Tauri runs in production mode
